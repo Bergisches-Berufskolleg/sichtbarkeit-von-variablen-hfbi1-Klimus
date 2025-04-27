@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Variablen Sichtbarkeit Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .feedback {
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Variablen Sichtbarkeit Quiz</h1>
+    <div class="question">
+        <p>1. Welche Art von Variable ist nur innerhalb einer Funktion zugänglich?</p>
+        <input type="radio" name="q1" value="global"> Globale Variable<br>
+        <input type="radio" name="q1" value="local"> Lokale Variable<br>
+        <input type="radio" name="q1" value="nonlocal"> Nicht-lokale Variable<br>
+        <p class="feedback" id="feedback1"></p>
+    </div>
+    <div class="question">
+        <p>2. Mit welchem Schlüsselwort können Sie eine globale Variable innerhalb einer Funktion ändern?</p>
+        <input type="radio" name="q2" value="global"> global<br>
+        <input type="radio" name="q2" value="nonlocal"> nonlocal<br>
+        <input type="radio" name="q2" value="local"> local<br>
+        <p class="feedback" id="feedback2"></p>
+    </div>
+    <div class="question">
+        <p>3. Was wird im folgenden Code ausgegeben?</p>
+        <pre>
+def äußere_funktion():
+    x = 10
+    def innere_funktion():
+        print(x)
+    innere_funktion()
+
+äußere_funktion()
+        </pre>
+        <input type="radio" name="q3" value="10"> 10<br>
+        <input type="radio" name="q3" value="Fehler"> Fehler<br>
+        <input type="radio" name="q3" value="Nichts"> Nichts<br>
+        <p class="feedback" id="feedback3"></p>
+    </div>
+    <div class="question">
+        <p>4. Was wird im folgenden Code ausgegeben?</p>
+        <pre>
+zahl = 10
+def ändere_zahl():
+    global zahl
+    zahl = 20
+
+ändere_zahl()
+print(zahl)
+        </pre>
+        <input type="radio" name="q4" value="10"> 10<br>
+        <input type="radio" name="q4" value="20"> 20<br>
+        <input type="radio" name="q4" value="Fehler"> Fehler<br>
+        <p class="feedback" id="feedback4"></p>
+    </div>
+
+    <button onclick="checkAnswers()">Antworten überprüfen</button>
+
+    <script>
+        function checkAnswers() {
+            // Frage 1
+            var q1 = document.getElementsByName('q1');
+            var feedback1 = document.getElementById('feedback1');
+            for (var i = 0; i < q1.length; i++) {
+                if (q1[i].checked) {
+                    if (q1[i].value === 'local') {
+                        feedback1.textContent = 'Richtig! Lokale Variablen sind nur innerhalb einer Funktion zugänglich.';
+                    } else {
+                        feedback1.textContent = 'Falsch. Die richtige Antwort ist "Lokale Variable".';
+                    }
+                }
+            }
+
+            // Frage 2
+            var q2 = document.getElementsByName('q2');
+            var feedback2 = document.getElementById('feedback2');
+            for (var i = 0; i < q2.length; i++) {
+                if (q2[i].checked) {
+                    if (q2[i].value === 'global') {
+                        feedback2.textContent = 'Richtig! Mit dem Schlüsselwort "global" können Sie eine globale Variable innerhalb einer Funktion ändern.';
+                    } else {
+                        feedback2.textContent = 'Falsch. Die richtige Antwort ist "global".';
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
